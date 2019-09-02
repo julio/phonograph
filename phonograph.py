@@ -2,9 +2,6 @@ import credentials
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import spotipy
-import os
-import sys
-import json
 import webbrowser
 import spotipy
 import spotipy.util as util
@@ -16,12 +13,12 @@ def get_albums_from_spreadsheet():
     'https://www.googleapis.com/auth/drive'
   ]
 
-  credentials = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)
-  gc = gspread.authorize(credentials)
+  google_credentials = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)
+  gc = gspread.authorize(google_credentials)
   wks = gc.open('Records').sheet1
   spreadsheet_albums = wks.get_all_records()
 
-  username = sys.argv[1]
+  username = credentials.spotify['username']
   spotifyObject = spotipy.Spotify(auth=get_spotify_token(username))
 
   bad = 0
