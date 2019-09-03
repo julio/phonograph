@@ -2,8 +2,6 @@ import credentials
 import spotipy
 import spotipy.util as util
 import os
-import webbrowser
-from json.decoder import JSONDecodeError
 
 class Spotify():
   def print_albums(self, spreadsheet_albums):
